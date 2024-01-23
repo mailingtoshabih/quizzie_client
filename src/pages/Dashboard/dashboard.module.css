@@ -1,0 +1,70 @@
+.parent {
+    box-sizing: border-box;
+    background-color: #EDEDED;
+    display: flex;
+}
+
+.dashboardParent {
+    height: 100vh;
+    width: 100%;
+    padding: 20px;
+}
+
+.boxParent {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.box {
+    width: 300px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 10px;
+    height: min-content;
+    color: #FF5D01;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+span {
+    color: #FF5D01;
+    font-size: 50px;
+    font-weight: 600;
+    text-align: left;
+}
+
+p {
+    color: #474444;
+    font-family: Poppins;
+    font-size: 35px;
+    font-weight: 600;
+    line-height: 53px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.trendingParent {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+
+.trendingLogo {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+
+.trending {
+    /* border: 1px solid red; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+  

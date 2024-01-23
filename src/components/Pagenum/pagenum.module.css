@@ -1,0 +1,45 @@
+.parent{
+    /* border : 1px solid green; */
+    position: relative;
+}
+
+.pagenum {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    width: 52px;
+    height: 52px;
+    box-shadow: 0px 0px 10px 0px #00000026;
+    background: #FFFFFF;
+    border-radius: 100%;
+    color: #969696;
+    position: relative;
+    cursor: pointer;
+}
+
+.pagenum.pagenumActive {
+    border: 2px solid #60B84B;
+    cursor: pointer;
+}
+
+.pageparent {
+    width : 500px;
+    position: absolute;
+    /* width: 400px; */
+    top:50px;
+    margin-top: 30px;
+}
+
+
+.newformActive {
+    /* position: absolute; */
+    width: 100%;
+    background-color: white;
+}
+
+.newformClosed {
+    position: absolute;
+    display: none;
+}

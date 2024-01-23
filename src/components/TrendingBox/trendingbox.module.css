@@ -1,0 +1,49 @@
+.parent {
+    box-sizing: border-box;
+    background-color: white;
+    width: auto;
+    border-radius: 15px;
+    padding: 10px;
+    position: relative;
+}
+
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.views {
+    color: #FF5D01;
+    font-family: Poppins;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.container2 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+}
+
+.date {
+    position: absolute;
+    color: #60B84B;
+    font-size: 12px;
+    font-weight: 600;
+    bottom: 0px;
+}

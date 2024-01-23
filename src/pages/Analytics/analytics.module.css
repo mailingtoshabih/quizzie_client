@@ -1,0 +1,12 @@
+.parent {
+    box-sizing: border-box;
+    background-color: #EDEDED;
+    display: flex;
+}
+
+
+.dashboardParent {
+    height: 100vh;
+    width: 100%;
+    padding: 20px;
+}

@@ -1,0 +1,110 @@
+.parent {
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    background-color: #F2F2F2;
+    color: #474444;
+}
+
+.card {
+    border-radius: 10px;
+    height: 80%;
+    width: 70%;
+    background-color: white;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, .15);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo {
+    background-color: white;
+    font-family: 'Jomhuria';
+    font-weight: 400;
+    font-size: 100px;
+    margin: 20px;
+    text-align: center;
+}
+
+.selector {
+    background-color: white;
+    margin: auto;
+    margin-top: 50px;
+    width: min-content;
+    display: flex;
+    column-gap: 100px;
+    justify-content: space-center;
+}
+
+.button {
+    color: #474444;
+    font-weight: 500;
+    width: 150px;
+    padding: 4px;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: rgba(0, 25, 255, .24);
+}
+
+.button.buttonActive {
+    background-color: white;
+    box-shadow: 0 0 50px 0 rgba(0, 25, 255, .24);
+}
+
+.formParent {
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    background-color: white;
+    place-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.label {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.input {
+    border: none;
+    outline: none;
+    background-color: #F4F4F4;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: #222222;
+    padding-left: 20px;
+    font-weight: 500;
+    border-radius: 0.425rem 0.425rem 0 0;
+    width: 20rem;
+    height: 35px;
+}
+
+.containers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.loginbtn {
+    margin-top: 10px;
+    padding: 5px;
+    padding-left: 70px;
+    padding-right: 70px;
+    background-color: #A9BCFF;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 18px;
+    color: #474444;
+}
