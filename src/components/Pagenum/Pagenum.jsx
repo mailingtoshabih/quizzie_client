@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { currentPage, setPage } from '../../../app/PageSlice';
 
 
-export const Pagenum = ({ page }) => {
+export const Pagenum = ({ page, initialForm,  setFormSubmitted }) => {
 
     const showPage = useSelector(currentPage);
     const dispatch = useDispatch();
@@ -15,7 +15,6 @@ export const Pagenum = ({ page }) => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        
         dispatch(setPage(page));
     }
 
@@ -52,7 +51,7 @@ export const Pagenum = ({ page }) => {
 
             <div className={styles.pageparent}>
                 <div className={classname}>
-                    <Pollpage page={page} />
+                    <Pollpage page={page} initialForm={initialForm}  setFormSubmitted={setFormSubmitted}/>
                 </div>
             </div>
         </>

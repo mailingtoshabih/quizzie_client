@@ -5,7 +5,7 @@ import { Pagenum } from '../Pagenum/Pagenum';
 import { useSelector } from 'react-redux';
 
 
-export const Pollform = () => {
+export const Pollform = ({initialForm, setFormSubmitted}) => {
 
     const [activePage, setActivePage] = useState(1);
     const [page, setPage] = useState(1);
@@ -14,11 +14,11 @@ export const Pollform = () => {
 
 
     const renderedPages = [
-        <Pagenum page={1} />,
-        <Pagenum page={2} />,
-        <Pagenum page={3} />,
-        <Pagenum page={4} />,
-        <Pagenum page={5} />,
+        <Pagenum page={1} initialForm={initialForm} setFormSubmitted={setFormSubmitted}/>,
+        <Pagenum page={2} initialForm={initialForm} setFormSubmitted={setFormSubmitted}/>,
+        <Pagenum page={3} initialForm={initialForm} setFormSubmitted={setFormSubmitted}/>,
+        <Pagenum page={4} initialForm={initialForm} setFormSubmitted={setFormSubmitted}/>,
+        <Pagenum page={5} initialForm={initialForm} setFormSubmitted={setFormSubmitted}/>,
     ]
 
     const handleAdd = (e) => {
@@ -42,12 +42,7 @@ export const Pollform = () => {
                             ))
                         }
 
-                        {/* <Pagenum page={1} />
-                        <Pagenum page={2} />
-                        <Pagenum page={3} />
-                        <Pagenum page={4} />
-                        <Pagenum page={5} /> */}
-
+    
 
                         {page < 5 &&
                             <div className={styles.add}

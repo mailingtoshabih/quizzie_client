@@ -1,7 +1,7 @@
 .card {
     background-color: white;
-    width: 39vw;
-    height: 75vh;
+    width: 545px;
+    height: 500px;
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -13,7 +13,8 @@
 .container3 {
     width: 90%;
     position: absolute;
-    
+    margin-left: auto;
+    margin-right: auto;
     top: 20px;
 }
 
@@ -26,6 +27,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
 }
 
 .pagenumpar {

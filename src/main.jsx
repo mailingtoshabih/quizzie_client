@@ -15,6 +15,7 @@ import { CreateQuiz } from './pages/CreateQuiz/CreateQuiz.jsx';
 import { Provider } from 'react-redux';
 import store from '../app/store.js';
 import { Thankyou } from './pages/Thankyou/Thankyou.jsx';
+import { Quiz } from './pages/Quiz/Quiz.jsx';
 
 
 
@@ -48,8 +49,8 @@ const router = createBrowserRouter([
     element: <div><Thankyou /></div>,
   },
   {
-    path: "/quiz",
-    element: <div><Thankyou /></div>,
+    path: "/quiz/attempquiz/:id",
+    element: <div><Quiz /></div>,
   },
 ]);
 

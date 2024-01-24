@@ -1,11 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from "./signup.module.css"
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
 export const Signup = () => {
 
+  const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
+
+  const [details, setDetails] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmpassword: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setDetails((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const handleSignup = async () => {
+    if (!details.username || !details.password || !details.confirmpassword || !details.email ||
+      details.password !== details.confirmpassword
+    ) return;
+
+    await axios.post("http://localhost:3000/auth/signup", details)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data === true) navigate("/login");
+        else console.log(res.data);
+      })
+      .catch((e) => console.log(e.message));
+
+    // console.log(details);
+  }
+
+
 
 
 
@@ -37,23 +73,23 @@ export const Signup = () => {
           <form action="">
             <div className={styles.containers}>
               <label htmlFor="">Name</label>
-              <input type="name" className={styles.input} />
+              <input onChange={handleChange} type="name" name="username" className={styles.input} />
             </div>
             <div className={styles.containers}>
               <label htmlFor="">Email</label>
-              <input type="email" className={styles.input} />
+              <input onChange={handleChange} type="email" name="email" className={styles.input} />
             </div>
             <div className={styles.containers}>
               <label htmlFor="">Password</label>
-              <input type="password" className={styles.input} />
+              <input onChange={handleChange} name="password" type="password" className={styles.input} />
             </div>
             <div className={styles.containers}>
               <label htmlFor="">Confirm Password</label>
-              <input type="password" className={styles.input} />
+              <input onChange={handleChange} name="confirmpassword" type="password" className={styles.input} />
             </div>
           </form>
 
-          <button className={styles.loginbtn}>
+          <button className={styles.loginbtn} onClick={handleSignup}>
             Signup
           </button>
         </div>

@@ -1,12 +1,70 @@
 .parent {
-    box-sizing: border-box;
-    background-color: #EDEDED;
-    display: flex;
+  box-sizing: border-box;
+  background-color: #EDEDED;
+  display: flex;
 }
 
 
 .dashboardParent {
-    height: 100vh;
-    width: 100%;
-    padding: 20px;
+  height: 100vh;
+  width: 100%;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboardParent h1 {
+  color: #5076FF;
+  font-size: 40px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+
+/* TableComponent.module.css */
+
+.tableContainer {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  font-weight: 600;
+}
+
+.row {
+  display: flex;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.cell {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  text-transform: capitalize;
+  text-wrap: nowrap;
+}
+
+.svgcell {
+  display: flex;
+  gap: 5px;
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.headerRow {
+  background-color: #5076ff;
+  color: white;
+  border-radius: 10px;
+}
+
+.evenRow {
+  background-color: #b3c4ff;
+}
+
+.oddRow {
 }

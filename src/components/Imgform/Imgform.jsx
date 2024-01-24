@@ -1,47 +1,46 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from "./imgform.module.css"
-
 import { Svgon } from "../Svg/Svgon"
 import { Svgoff } from "../Svg/Svgoff"
+import { useSelector, useDispatch } from 'react-redux';
 import { Optiontype } from '../Optiontype/Optiontype'
 
 
-const svg = {
-    svgon: (
-        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="9.5" cy="9.5" r="9.5" fill="#D9D9D9" />
-            <circle cx="9.5" cy="9.5" r="7.5" fill="white" />
-            <circle cx="9.5" cy="9.5" r="5.5" fill="#60B84B" />
-        </svg>
-    ),
-    svgoff: (
-        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="9.5" cy="9.5" r="9.5" fill="#D9D9D9" />
-            <circle cx="9.5" cy="9.5" r="7.5" fill="white" />
-        </svg>
-    )
-}
 
 
+export const Imgform = ({ page, getFormData, setOptionType }) => {
 
-
-export const Imgform = ({ setOptionType }) => {
-
-    const [selectedInput, setSelectedInput] = useState(1);
-
-    const [pollQuestion, setPollQuestion] = useState("");
     // const [optionType, setOptionType] = useState('text');
+    const [selectedInput, setSelectedInput] = useState(1);
+    const [pollQuestion, setPollQuestion] = useState("");
+    const [formData, setFormData] = useState({
+        question: '',
+        answer: '',
+        option1: '',
+        option2: '',
+        option3: '',
+        option4: '',
+        timer: ''
+    });
 
-    const handleQuestionChange = (e) => {
-        setPollQuestion(e.target.value);
-    }
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    useEffect(() => {
+        getFormData({ formData });
+    }, [formData]);
 
     return (
         <div>
-
             <input type="text"
+                name="question"
                 placeholder='Poll Question'
-                onChange={handleQuestionChange}
+                onChange={handleInputChange}
                 className={styles.pollinput} />
 
             <Optiontype setOptionType={setOptionType} />
@@ -59,6 +58,7 @@ export const Imgform = ({ setOptionType }) => {
                     </div>
 
                     <input type='text'
+                        name='option1' onChange={handleInputChange}
                         placeholder='image URL'
                         className={
                             selectedInput === 1 ? `${styles.input} ${styles.active}` : `${styles.input}`
@@ -77,6 +77,7 @@ export const Imgform = ({ setOptionType }) => {
                     </div>
 
                     <input type='text'
+                        name='option2' onChange={handleInputChange}
                         placeholder='image URL'
                         className={
                             selectedInput === 2 ? `${styles.input} ${styles.active}` : `${styles.input}`
@@ -95,6 +96,7 @@ export const Imgform = ({ setOptionType }) => {
                     </div>
 
                     <input type='text'
+                    name='option3' onChange={handleInputChange}
                         placeholder='image URL'
                         className={
                             selectedInput === 3 ? `${styles.input} ${styles.active}` : `${styles.input}`
@@ -113,6 +115,7 @@ export const Imgform = ({ setOptionType }) => {
                     </div>
 
                     <input type='text'
+                    name='option4' onChange={handleInputChange}
                         placeholder='image URL'
                         className={
                             selectedInput === 4 ? `${styles.input} ${styles.active}` : `${styles.input}`

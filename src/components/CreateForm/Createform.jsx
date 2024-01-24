@@ -1,10 +1,17 @@
-import React, { useState }  from 'react'
+import React, { useState } from 'react'
 import styles from "./createform.module.css"
+import { useNavigate } from 'react-router-dom'
+export const Createform = ({ setInitialform }) => {
 
-export const Createform = () => {
-
+    const navigate = useNavigate();
     const [quizTitle, setQuizTitle] = useState("");
-    const [radio, setRadio] = useState(true);
+    const [radio, setRadio] = useState(false);  //true-qna, false-poll
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        if (!quizTitle) return;
+        setInitialform({ title: quizTitle, type: radio })
+    }
 
 
     return (
@@ -13,6 +20,7 @@ export const Createform = () => {
             <div className={styles.container3}>
 
                 <input type="text" placeholder='Quiz Name'
+                    onChange={(e) => setQuizTitle(e.target.value)}
                     className={styles.input} />
 
                 <div className={styles.radioParent}>
@@ -32,10 +40,12 @@ export const Createform = () => {
                 </div>
 
                 <div className={styles.buttonParent}>
-                    <button className={`${styles.button}`}>
+                    <button onClick={(() => navigate(-1))} className={`${styles.button}`}>
                         Cancel
                     </button>
-                    <button className={`${styles.button} ${styles.continue}`}>
+                    <button
+                        onClick={handleClick}
+                        className={`${styles.button} ${styles.continue}`}>
                         Continue
                     </button>
                 </div>

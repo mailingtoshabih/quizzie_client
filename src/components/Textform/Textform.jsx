@@ -2,18 +2,14 @@ import React, { useEffect, useState } from 'react'
 import styles from "./textform.module.css"
 import { Svgon } from "../Svg/Svgon"
 import { Svgoff } from "../Svg/Svgoff"
-import { useSelector, useDispatch } from 'react-redux';
-import { setInputValue, selectInputValue } from "../../../app/formSlice"
 import { Optiontype } from '../Optiontype/Optiontype';
 
 
 
 
-export const Textform = ({ page, getFormData, question, setOptionType }) => {
 
-    const state = useSelector((state) => state?.counter?.form?.value);
-    const dispatch = useDispatch();
-    const [pollQuestion, setPollQuestion] = useState("");
+export const Textform = ({ page, getFormData, setOptionType }) => {
+
     const [selectedInput, setSelectedInput] = useState(1);
     const [formData, setFormData] = useState({
         question: '',
@@ -22,6 +18,7 @@ export const Textform = ({ page, getFormData, question, setOptionType }) => {
         option2: '',
         option3: '',
         option4: '',
+        timer: ''
     });
 
 
