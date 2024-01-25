@@ -1,0 +1,26 @@
+.parent {
+    box-sizing: border-box;
+    background-color: #EDEDED;
+    display: flex;
+}
+
+.dashboardParent {
+    height: 100vh;
+    width: 100%;
+    padding: 60px;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;  
+    align-items: center;
+}
+
+.title {
+    color : #5076FF;
+}
+
+.corner p{
+    font-size: 16px;
+    color : #FF5D01;
+}

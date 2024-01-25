@@ -3,20 +3,19 @@ import styles from './delete.module.css';
 import axios from "axios";
 
 
-
-export const Delete = ({ setDeleteModal }) => {
+export const Delete = ({ setDeleteModal, quiz }) => {
 
     const handleDelete = async (e) => {
-        e.preventdefault();
-        // await axios.delete("")
-        //     .then((res) => console.log(res.data))
-        //     .catch((e) => console.log(e.message));
-
-        // write delete api
-        // write question wise
-        // make dashboard
-        // responsive quiz
+        e.preventDefault();
+        await axios.delete(`http://localhost:3000/quiz/delete/${quiz?._id}`)
+            .then((res) => location.reload())
+            .catch((e) => console.log(e.message));
     }
+
+    
+    // write question wise
+    // make dashboard
+    // responsive quiz
 
 
     return (

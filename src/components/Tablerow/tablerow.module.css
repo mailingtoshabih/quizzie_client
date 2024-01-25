@@ -1,0 +1,31 @@
+.evenRow {
+    background-color: #b3c4ff;
+}
+
+
+.row {
+    display: flex;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.cell {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    text-transform: capitalize;
+    text-wrap: nowrap;
+}
+
+.svgcell {
+    display: flex;
+    gap: 5px;
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.oddRow {
+
+}

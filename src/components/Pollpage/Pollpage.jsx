@@ -8,6 +8,7 @@ import { Textimgform } from "../../components/Textimgform/Textimgform"
 import { useSelector, useDispatch } from 'react-redux';
 import { setInputValue, selectInputValue } from "../../../app/formSlice"
 import { useNavigate } from 'react-router-dom';
+import { Timer } from '../Timer/Timer';
 
 
 
@@ -72,6 +73,10 @@ export const Pollpage = ({ page, initialForm, setFormSubmitted }) => {
           Create Quiz
         </button>
       </div>
+
+      {
+        initialForm?.type && <Timer />
+      }
 
     </div>
   )

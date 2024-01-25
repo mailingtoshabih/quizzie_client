@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "./congrats.module.css"
 import { Link, useNavigate } from 'react-router-dom'
-
+import axios from 'axios';
 
 export const Congrats = () => {
 
@@ -10,6 +10,17 @@ export const Congrats = () => {
     const handleClose = () => {
         navigate(-1);
     }
+
+    const [link, setLink] = useState(null);
+
+    useEffect(() => {
+        const getLink = async () => {
+            await axios.get("http://localhost:3000/quiz/recentquiz")
+                .then((res) => setLink(res.data))
+                .catch((e) => console.log(e.message));
+        }
+        getLink();
+    }, [])
 
 
     return (
@@ -28,8 +39,7 @@ export const Congrats = () => {
                 </p>
 
                 <p className={styles.link}>
-                    Your link is 
-                    
+                    {link ? link : "Quiz link is loading..."}
                 </p>
 
                 <button className={styles.share}>

@@ -66,9 +66,9 @@ export const Textimgform = ({ page, getFormData, setOptionType }) => {
                             (<Svgoff />)
                         }
                     </div>
-                    <input name='option1' onChange={handleInputChange} type="text" placeholder="Text" className={
+                    <input name='option1' onChange={handleInputChange} type="text" placeholder="Image url" className={
                         selectedInput === 1 ? `${styles.input} ${styles.active}` : `${styles.input}`} />
-                    <input name='option1text' onChange={handleInputChange} type="text" placeholder="Image URL" className={
+                    <input name='option1text' onChange={handleInputChange} type="text" placeholder="Text" className={
                         selectedInput === 1 ? `${styles.input} ${styles.active}` : `${styles.input}`} />
                 </div>
 
@@ -83,12 +83,12 @@ export const Textimgform = ({ page, getFormData, setOptionType }) => {
                         }
                     </div>
 
-                    <input name='option2' onChange={handleInputChange} type="text" placeholder="Text"
+                    <input name='option2' onChange={handleInputChange} type="text" placeholder="Image url"
                         className={
                             selectedInput === 2 ? `${styles.input} ${styles.active}` : `${styles.input}`
                         }
                     />
-                    <input name='option2text' onChange={handleInputChange} type="text" placeholder="Image URL"
+                    <input name='option2text' onChange={handleInputChange} type="text" placeholder="Text"
                         className={
                             selectedInput === 2 ? `${styles.input} ${styles.active}` : `${styles.input}`
                         }
@@ -106,12 +106,12 @@ export const Textimgform = ({ page, getFormData, setOptionType }) => {
                         }
                     </div>
 
-                    <input name='option3' onChange={handleInputChange} type="text" placeholder="Text"
+                    <input name='option3' onChange={handleInputChange} type="text" placeholder="Image url"
                         className={
                             selectedInput === 3 ? `${styles.input} ${styles.active}` : `${styles.input}`
                         }
                     />
-                    <input name='option3text' onChange={handleInputChange} type="text" placeholder="Image URL"
+                    <input name='option3text' onChange={handleInputChange} type="text" placeholder="Text"
                         className={
                             selectedInput === 3 ? `${styles.input} ${styles.active}` : `${styles.input}`
                         }
@@ -129,12 +129,12 @@ export const Textimgform = ({ page, getFormData, setOptionType }) => {
                         }
                     </div>
 
-                    <input name='option4' onChange={handleInputChange} type="text" placeholder="Text"
+                    <input name='option4' onChange={handleInputChange} type="text" placeholder="Image url"
                         className={
                             selectedInput === 4 ? `${styles.input} ${styles.active}` : `${styles.input}`
                         }
                     />
-                    <input name='option4text' onChange={handleInputChange} type="text" placeholder="Image URL"
+                    <input name='option4text' onChange={handleInputChange} type="text" placeholder="Text"
                         className={
                             selectedInput === 4 ? `${styles.input} ${styles.active}` : `${styles.input}`
                         }
