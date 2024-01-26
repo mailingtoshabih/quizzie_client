@@ -12,9 +12,10 @@ const isURL = (str) => {
 
 export const Quizcard = ({ question, quiz, setPage, page, setAnswers, submitQuiz }) => {
 
-    const [selection, setSelection] = useState(10);
-    const [seconds, setSeconds] = useState(10);
+    // console.log(question)
 
+    const [selection, setSelection] = useState(10);
+    const [seconds, setSeconds] = useState(5);
 
 
     const handleNext = () => {
@@ -34,21 +35,24 @@ export const Quizcard = ({ question, quiz, setPage, page, setAnswers, submitQuiz
 
 
     useEffect(() => {
-        const setTime = () => {
+        const setTime = (duration) => {
             setTimeout(() => {
                 setSeconds(seconds - 1);
                 if (seconds === 0 ) {
                     if (page + 1 === quiz?.quiz?.length) submitQuiz(); 
-                    setSeconds(10);
+                    setSeconds(duration);
                     handleNext();
                     return;
                 }
             }, 1000);
         }
-
-        setTime();
-
+        question?.timer && setTime(5);
     }, [seconds]);
+
+    const handleSubmit = () => {
+        handleNext();
+        submitQuiz();
+    }
 
 
 
@@ -150,7 +154,7 @@ export const Quizcard = ({ question, quiz, setPage, page, setAnswers, submitQuiz
                     Next
                 </button>
                 :
-                <button onClick={() => submitQuiz()} className={styles.next}>
+                <button onClick={handleSubmit} className={styles.next}>
                     Submit
                 </button>
             }

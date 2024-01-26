@@ -19,8 +19,10 @@ export const Textform = ({ page, getFormData, setOptionType }) => {
         option2: '',
         option3: '',
         option4: '',
-        timer: ''
+        timer: '',
+        optionType: 'text',
     });
+    console.log(formData)
 
 
     const handleInputChange = (event) => {
@@ -36,49 +38,48 @@ export const Textform = ({ page, getFormData, setOptionType }) => {
     }, [formData]);
 
 
+
+
     return (
         <div>
 
 
-            <div>
+            <div onChange={() => console.log("gg")}>
                 <input type="text"
                     name='question'
                     placeholder='Poll Question'
                     onChange={handleInputChange}
                     className={styles.pollinput} />
 
-                <Optiontype setOptionType={setOptionType} />
+                <Optiontype active={formData?.optionType} handleInputChange={handleInputChange} setOptionType={setOptionType} />
 
 
                 <div className={styles.optionbar} >
-                    <div
-                        className={styles.inputparent}
-                        onClick={() => setSelectedInput(1)} >
 
-                        <div>
-                            {selectedInput === 1 ?
-                                (<Svgon />)
-                                :
-                                (<Svgoff />)
-                            }
-                        </div>
-
+                    <div className={styles.inputparent}>
+                        <input
+                            onClick={() => setSelectedInput(1)}
+                            className={styles.radio}
+                            type="radio"
+                            name="answer"
+                            value="a"
+                            onChange={handleInputChange}
+                        />
                         <input type='text'
                             name='option1' onChange={handleInputChange}
                             placeholder='Text'
                             className={selectedInput === 1 ? `${styles.input} ${styles.active}` : `${styles.input}`} />
                     </div>
 
-                    <div
-                        className={styles.inputparent}
-                        onClick={() => setSelectedInput(2)} >
-                        <div>
-                            {selectedInput === 2 ?
-                                (<Svgon />)
-                                :
-                                (<Svgoff />)
-                            }
-                        </div>
+                    <div className={styles.inputparent}>
+                        <input
+                            onClick={() => setSelectedInput(2)}
+                            className={styles.radio}
+                            type="radio"
+                            name="answer"
+                            value="b"
+                            onChange={handleInputChange}
+                        />
 
                         <input type='text'
                             name='option2' onChange={handleInputChange}
@@ -88,16 +89,16 @@ export const Textform = ({ page, getFormData, setOptionType }) => {
                             }
                         />
                     </div>
-                    <div
-                        className={styles.inputparent}
-                        onClick={() => setSelectedInput(3)} >
-                        <div>
-                            {selectedInput === 3 ?
-                                (<Svgon />)
-                                :
-                                (<Svgoff />)
-                            }
-                        </div>
+
+                    <div className={styles.inputparent} >
+                        <input
+                            onClick={() => setSelectedInput(3)}
+                            className={styles.radio}
+                            type="radio"
+                            name="answer"
+                            value="c"
+                            onChange={handleInputChange}
+                        />
 
                         <input type='text'
                             name='option3' onChange={handleInputChange}
@@ -107,16 +108,16 @@ export const Textform = ({ page, getFormData, setOptionType }) => {
                             }
                         />
                     </div>
-                    <div
-                        className={styles.inputparent}
-                        onClick={() => setSelectedInput(4)} >
-                        <div>
-                            {selectedInput === 4 ?
-                                (<Svgon />)
-                                :
-                                (<Svgoff />)
-                            }
-                        </div>
+
+                    <div className={styles.inputparent} >
+                        <input
+                            onClick={() => setSelectedInput(4)}
+                            className={styles.radio}
+                            type="radio"
+                            name="answer"
+                            value="d"
+                            onChange={handleInputChange}
+                        />
 
                         <input type='text'
                             name='option4' onChange={handleInputChange}
@@ -126,6 +127,7 @@ export const Textform = ({ page, getFormData, setOptionType }) => {
                             }
                         />
                     </div>
+
                 </div>
 
 

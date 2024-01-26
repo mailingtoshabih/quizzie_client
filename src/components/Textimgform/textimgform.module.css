@@ -30,6 +30,10 @@
     color: #FFFFFF;
 }
 
+.input.active::placeholder{
+    color: white;
+}
+
 .inputparent {
     display: flex;
     align-items: center;

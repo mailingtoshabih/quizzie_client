@@ -22,6 +22,9 @@ export const Congrats = () => {
         getLink();
     }, [])
 
+    const handleShare = () => {
+        navigator.clipboard.writeText(link && link);
+    }
 
     return (
         <div className={styles.parent}>
@@ -42,7 +45,8 @@ export const Congrats = () => {
                     {link ? link : "Quiz link is loading..."}
                 </p>
 
-                <button className={styles.share}>
+                <button className={styles.share}
+                    onClick={handleShare}>
                     Share
                 </button>
             </div>

@@ -10,14 +10,16 @@ export const Quiz = () => {
   const params = useParams();
   const [quiz, setQuiz] = useState(false);
   const [page, setPage] = useState(0);
-  quiz && console.log(quiz)
+  // quiz && console.log(quiz)
 
   const [answers, setAnswers] = useState({});
   const [finalAnswers, setFinalAnswers] = useState(null);
+  // console.log(finalAnswers, answers);
 
   const submitQuiz = async () => {
     setFinalAnswers(answers);
   }
+ 
 
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export const Quiz = () => {
       {
         finalAnswers
           ?
-          <Score />
+          <Score questions={quiz?.quiz} finalAnswers={answers}/>
           :
           <Quizcard
             quiz={quiz}

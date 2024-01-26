@@ -10,9 +10,7 @@ import { Optiontype } from '../Optiontype/Optiontype'
 
 export const Imgform = ({ page, getFormData, setOptionType }) => {
 
-    // const [optionType, setOptionType] = useState('text');
     const [selectedInput, setSelectedInput] = useState(1);
-    const [pollQuestion, setPollQuestion] = useState("");
     const [formData, setFormData] = useState({
         question: '',
         answer: '',
@@ -20,7 +18,8 @@ export const Imgform = ({ page, getFormData, setOptionType }) => {
         option2: '',
         option3: '',
         option4: '',
-        timer: ''
+        timer: '',
+        optionType: 'textimg',
     });
 
     const handleInputChange = (event) => {
@@ -43,19 +42,19 @@ export const Imgform = ({ page, getFormData, setOptionType }) => {
                 onChange={handleInputChange}
                 className={styles.pollinput} />
 
-            <Optiontype setOptionType={setOptionType} />
+            <Optiontype active={formData?.optionType}  handleInputChange={handleInputChange}  setOptionType={setOptionType} />
 
             <div className={styles.optionbar} >
                 <div
-                    className={styles.inputparent}
-                    onClick={() => setSelectedInput(1)} >
-                    <div>
-                        {selectedInput === 1 ?
-                            (<Svgon />)
-                            :
-                            (<Svgoff />)
-                        }
-                    </div>
+                    className={styles.inputparent}>
+                    <input
+                        onClick={() => setSelectedInput(1)}
+                        className={styles.radio}
+                        type="radio"
+                        name="answer"
+                        value="a"
+                        onChange={handleInputChange}
+                    />
 
                     <input type='text'
                         name='option1' onChange={handleInputChange}
@@ -66,15 +65,15 @@ export const Imgform = ({ page, getFormData, setOptionType }) => {
                     />
                 </div>
                 <div
-                    className={styles.inputparent}
-                    onClick={() => setSelectedInput(2)} >
-                    <div>
-                        {selectedInput === 2 ?
-                            (<Svgon />)
-                            :
-                            (<Svgoff />)
-                        }
-                    </div>
+                    className={styles.inputparent}>
+                    <input
+                        onClick={() => setSelectedInput(2)}
+                        className={styles.radio}
+                        type="radio"
+                        name="answer"
+                        value="a"
+                        onChange={handleInputChange}
+                    />
 
                     <input type='text'
                         name='option2' onChange={handleInputChange}
@@ -85,37 +84,36 @@ export const Imgform = ({ page, getFormData, setOptionType }) => {
                     />
                 </div>
                 <div
-                    className={styles.inputparent}
-                    onClick={() => setSelectedInput(3)} >
-                    <div>
-                        {selectedInput === 3 ?
-                            (<Svgon />)
-                            :
-                            (<Svgoff />)
-                        }
-                    </div>
+                    className={styles.inputparent}>
+                    <input
+                        onClick={() => setSelectedInput(3)}
+                        className={styles.radio}
+                        type="radio"
+                        name="answer"
+                        value="a"
+                        onChange={handleInputChange}
+                    />
 
                     <input type='text'
-                    name='option3' onChange={handleInputChange}
+                        name='option3' onChange={handleInputChange}
                         placeholder='image URL'
                         className={
                             selectedInput === 3 ? `${styles.input} ${styles.active}` : `${styles.input}`
                         }
                     />
                 </div>
-                <div
-                    className={styles.inputparent}
-                    onClick={() => setSelectedInput(4)} >
-                    <div>
-                        {selectedInput === 4 ?
-                            (<Svgon />)
-                            :
-                            (<Svgoff />)
-                        }
-                    </div>
+                <div className={styles.inputparent}>
+                    <input
+                        onClick={() => setSelectedInput(4)}
+                        className={styles.radio}
+                        type="radio"
+                        name="answer"
+                        value="a"
+                        onChange={handleInputChange}
+                    />
 
                     <input type='text'
-                    name='option4' onChange={handleInputChange}
+                        name='option4' onChange={handleInputChange}
                         placeholder='image URL'
                         className={
                             selectedInput === 4 ? `${styles.input} ${styles.active}` : `${styles.input}`

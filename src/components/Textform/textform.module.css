@@ -30,9 +30,16 @@
     background-color: #60B84B;
     color: #FFFFFF;
 }
+.input.active::placeholder{
+    color: white;
+}
 
 .inputparent {
     display: flex;
     align-items: center;
     /* justify-content: center; */
+}
+
+.radio{
+    /* display: none; */
 }
