@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import styles from "./analytics.module.css"
-import { Sidebar } from '../../components/Sidebar/Sidebar'
 import axios, { all } from 'axios';
-import { Delete } from '../../components/Delete/Delete';
+import styles from "./analytics.module.css"
+import React, { useEffect, useState } from 'react'
+import { Sidebar } from '../../components/Sidebar/Sidebar'
 import { Tablerow } from '../../components/Tablerow/Tablerow';
 
 
@@ -13,11 +12,22 @@ export const Analytics = () => {
   console.log(allquiz)
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    const parsedUser = user ? JSON.parse(user) : null;
+
     const getAllQuiz = async () => {
-      await axios.get("http://localhost:3000/quiz/getallquiz")
+      if (!token) return;
+      await axios.get(`http://localhost:3000/quiz/getallquiz/${parsedUser?._id}`,
+        {
+          headers: {
+            'Authorization': token,
+          }
+        }
+      )
         .then((res) => setAllQuiz(res?.data))
         .catch((e) => console.log(e.message))
-    }
+    };
     getAllQuiz();
   }, []);
 

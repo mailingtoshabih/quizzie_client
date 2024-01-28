@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import styles from "./createquiz.module.css"
 import { Sidebar } from '../../components/Sidebar/Sidebar'
-import { Createform } from '../../components/CreateForm/Createform';
 import { Pollform } from '../../components/Pollform/Pollform';
 import { Congrats } from '../../components/Congrats/Congrats';
+import { Createform } from '../../components/CreateForm/Createform';
 
 
 export const CreateQuiz = () => {

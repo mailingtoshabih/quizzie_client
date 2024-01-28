@@ -18,7 +18,6 @@ export const Signup = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setDetails((prev) => ({
       ...prev,
       [name]: value,
@@ -26,18 +25,26 @@ export const Signup = () => {
   }
 
   const handleSignup = async () => {
-    if (!details.username || !details.password || !details.confirmpassword || !details.email ||
+    if (
+      !details.username ||
+      !details.password ||
+      !details.confirmpassword ||
+      !details.email ||
       details.password !== details.confirmpassword
     ) return;
 
     await axios.post("http://localhost:3000/auth/signup", details)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data === true) navigate("/login");
-        else console.log(res.data);
+      .then((response) => {
+        // console.log(res.data);
+        if (response.data.token) {
+          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          navigate("/login");
+        } else {
+          console.log(response.data.error || "Signup failed");
+        }
       })
       .catch((e) => console.log(e.message));
-
     // console.log(details);
   }
 

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import axios from 'axios';
 import styles from "./quiz.module.css"
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import { Quizcard } from '../../components/Quizcard/Quizcard';
+import React, { useState, useEffect } from 'react'
 import { Score } from '../../components/Score/Score';
+import { Quizcard } from '../../components/Quizcard/Quizcard';
 
 
 export const Quiz = () => {
@@ -19,11 +19,13 @@ export const Quiz = () => {
   const submitQuiz = async () => {
     setFinalAnswers(answers);
   }
- 
+
 
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
     const getQuiz = async () => {
+      if (!token) return;
       await axios.get(`http://localhost:3000/quiz/attempquiz/${params.id && params.id}`)
         .then((res) => setQuiz(res.data))
         .catch((e) => console.log(e.message))
@@ -38,7 +40,7 @@ export const Quiz = () => {
       {
         finalAnswers
           ?
-          <Score questions={quiz?.quiz} finalAnswers={answers}/>
+          <Score questions={quiz?.quiz} finalAnswers={answers} />
           :
           <Quizcard
             quiz={quiz}

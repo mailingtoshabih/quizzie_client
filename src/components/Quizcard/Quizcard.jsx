@@ -12,10 +12,8 @@ const isURL = (str) => {
 
 export const Quizcard = ({ question, quiz, setPage, page, setAnswers, submitQuiz }) => {
 
-    // console.log(question)
-
     const [selection, setSelection] = useState(10);
-    const [seconds, setSeconds] = useState(5);
+    const [seconds, setSeconds] = useState();
 
 
     const handleNext = () => {
@@ -31,6 +29,7 @@ export const Quizcard = ({ question, quiz, setPage, page, setAnswers, submitQuiz
 
     useEffect(() => {
         setSelection(false);
+        setSeconds(question?.timer);
     }, [question?.question]);
 
 
@@ -38,16 +37,17 @@ export const Quizcard = ({ question, quiz, setPage, page, setAnswers, submitQuiz
         const setTime = (duration) => {
             setTimeout(() => {
                 setSeconds(seconds - 1);
-                if (seconds === 0 ) {
-                    if (page + 1 === quiz?.quiz?.length) submitQuiz(); 
+                if (seconds === 0) {
+                    if (page + 1 === quiz?.quiz?.length) submitQuiz();
                     setSeconds(duration);
                     handleNext();
                     return;
                 }
             }, 1000);
         }
-        question?.timer && setTime(5);
-    }, [seconds]);
+        question?.timer && setTime(question.timer);
+    }, [seconds, question]);
+
 
     const handleSubmit = () => {
         handleNext();
@@ -55,15 +55,16 @@ export const Quizcard = ({ question, quiz, setPage, page, setAnswers, submitQuiz
     }
 
 
-
-
     return (
         <div className={styles.card}>
             <div className={styles.top}>
                 <p>0{page + 1}/0{quiz?.quiz?.length || 0}</p>
                 {
-                    quiz?.type &&
-                    <p className={styles.timer}>00:{seconds === 10 ? seconds : "0"+seconds}</p>
+                    quiz?.type && question?.timer &&
+                    <p className={styles.timer}>
+                        {
+                            seconds === 10 ? "00:" + seconds : "00:0" + seconds
+                        }</p>
                 }
             </div>
 
@@ -72,6 +73,9 @@ export const Quizcard = ({ question, quiz, setPage, page, setAnswers, submitQuiz
                     ||
                     "Your question text comes here, its a sample text."}
             </p>
+
+
+
 
             <div className={styles.optionsParent}>
 

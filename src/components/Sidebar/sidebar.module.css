@@ -40,16 +40,20 @@
 
 .logout {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 
 
-button {
+.button {
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
     border: none;
+    border-top: 3px solid #000;
     margin-top: 50px;
     background-color: white;
-    border-radius: 10px;
     font-weight: 600;
     font-size: 20px;
     padding: 10px;

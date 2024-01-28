@@ -14,8 +14,14 @@ export const Congrats = () => {
     const [link, setLink] = useState(null);
 
     useEffect(() => {
+        const token = localStorage.getItem('token');
         const getLink = async () => {
-            await axios.get("http://localhost:3000/quiz/recentquiz")
+            if (!token) return;
+            await axios.get("http://localhost:3000/quiz/recentquiz", {
+                headers: {
+                    'Authorization': token,
+                }
+            })
                 .then((res) => setLink(res.data))
                 .catch((e) => console.log(e.message));
         }

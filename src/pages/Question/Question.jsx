@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import styles from "./question.module.css"
 import axios, { all } from 'axios';
-import { Sidebar } from '../../components/Sidebar/Sidebar';
+import styles from "./question.module.css"
 import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
 import { Each } from '../../components/Eachquestion/Each';
+import { Sidebar } from '../../components/Sidebar/Sidebar';
 
 
 
@@ -12,8 +12,14 @@ export const Question = () => {
     const [quiz, setQuiz] = useState([]);
 
     useEffect(() => {
+        const token = localStorage.getItem('token');
         const findQuiz = async () => {
-            await axios.get(`http://localhost:3000/quiz/getquiz/${params.id}`)
+            if (!token) return;
+            await axios.get(`http://localhost:3000/quiz/getquiz/${params.id}`, {
+                headers: {
+                    'Authorization': token,
+                }
+            })
                 .then((res) => setQuiz(res.data))
                 .catch((e) => console.log(e.message));
         }

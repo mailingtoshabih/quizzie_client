@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import axios, { all } from 'axios';
 import styles from "./dashboard.module.css"
+import React, { useState, useEffect } from 'react'
 import { Sidebar } from '../../components/Sidebar/Sidebar'
 import { Quizbox } from '../../components/Quizbox/Quizbox'
 import { TrendingBox } from '../../components/TrendingBox/TrendingBox';
-import axios, { all } from 'axios';
 
 
 function countQuestionsAndImpressions(data) {
@@ -35,15 +35,38 @@ function formatNumber(number) {
 export const Dashboard = () => {
 
   const [allquiz, setAllQuiz] = useState([]);
+  const [trendingQuiz, setTrendingQuiz] = useState([]);
   // console.log(allquiz)
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    const parsedUser = user ? JSON.parse(user) : null;
+
     const getAllQuiz = async () => {
-      await axios.get("http://localhost:3000/quiz/getallquiz")
+      if (!token) return;
+      await axios.get(`http://localhost:3000/quiz/getallquiz/${parsedUser?._id}`, {
+        headers: {
+          'Authorization': token,
+        }
+      })
         .then((res) => setAllQuiz(res?.data))
         .catch((e) => console.log(e.message))
     }
+
+    const getTrendingQuiz = async () => {
+      if (!token) return;
+      await axios.get(`http://localhost:3000/quiz/trending/${parsedUser?._id}`, {
+        headers: {
+          'Authorization': token,
+        }
+      })
+        .then((res) => setTrendingQuiz(res?.data))
+        .catch((e) => console.log(e.message))
+    }
+
     getAllQuiz();
+    getTrendingQuiz();
   }, []);
 
 
@@ -77,9 +100,12 @@ export const Dashboard = () => {
           <div className={styles.trending}>
             {/* all trending quizes mapping here*/}
             {
-              allquiz?.map((quiz) => (
-                <TrendingBox key={quiz._id} quiz={quiz} />
-              ))
+              trendingQuiz?.length > 0 ?
+                trendingQuiz?.map((quiz) => (
+                  <TrendingBox key={quiz._id} quiz={quiz} />
+                ))
+                :
+                <p style={{ fontSize: "18px", color: "red" }}>No quiz is trending</p>
             }
           </div>
         </div>

@@ -8,3 +8,11 @@
     align-items: center;
 }
 
+
+@media (max-width: 600px) {
+    .parent {
+        height: max-content;
+       
+        /* Set to a single column for mobile screens */
+    }
+}

@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react'
 import axios from "axios";
-import styles from "./pollpage.module.css"
-import { Optiontype } from '../Optiontype/Optiontype';
-import { Textform } from "../../components/Textform/Textform"
-import { Imgform } from "../../components/Imgform/Imgform"
-import { Textimgform } from "../../components/Textimgform/Textimgform"
-import { useSelector, useDispatch } from 'react-redux';
-import { setInputValue, selectInputValue } from "../../../app/formSlice"
-import { useNavigate } from 'react-router-dom';
 import { Timer } from '../Timer/Timer';
+import styles from "./pollpage.module.css"
+import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { Optiontype } from '../Optiontype/Optiontype';
+import { useSelector, useDispatch } from 'react-redux';
+import { Imgform } from "../../components/Imgform/Imgform"
+import { Textform } from "../../components/Textform/Textform"
+import { Textimgform } from "../../components/Textimgform/Textimgform"
+import { setInputValue, selectInputValue } from "../../../app/formSlice"
 
 
 
 export const Pollpage = ({ page, initialForm, setFormSubmitted }) => {
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const stateValue = useSelector((state) => state.form.value);
@@ -28,9 +29,9 @@ export const Pollpage = ({ page, initialForm, setFormSubmitted }) => {
   }
 
   const optionPage = {
-    text: <Textform setOptionType={setOptionType} getFormData={handleChange} page={page} />,
-    imgurl: <Imgform setOptionType={setOptionType} getFormData={handleChange} page={page} />,
-    textimgurl: <Textimgform setOptionType={setOptionType} getFormData={handleChange} page={page} />,
+    text: <Textform initialForm={initialForm} setOptionType={setOptionType} getFormData={handleChange} page={page} />,
+    imgurl: <Imgform initialForm={initialForm} setOptionType={setOptionType} getFormData={handleChange} page={page} />,
+    textimgurl: <Textimgform initialForm={initialForm} setOptionType={setOptionType} getFormData={handleChange} page={page} />,
   }
 
   useEffect(() => {
@@ -40,8 +41,15 @@ export const Pollpage = ({ page, initialForm, setFormSubmitted }) => {
 
   const handleCreate = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token');
+    if (!token) return;
     try {
-      await axios.post("http://localhost:3000/quiz/publishquiz", { stateValue, initialForm })
+      await axios.post("http://localhost:3000/quiz/publishquiz",
+        { stateValue, initialForm }, {
+        headers: {
+          'Authorization': token,
+        }
+      })
         .then((res) => res.data && setFormSubmitted(true))
         .catch((e) => console.log(e.message));
 
@@ -74,10 +82,16 @@ export const Pollpage = ({ page, initialForm, setFormSubmitted }) => {
         </button>
       </div>
 
-      {
+      {/* {
         initialForm?.type && <Timer />
-      }
+      } */}
 
     </div>
   )
 }
+
+
+// first fix the forms ->use one input tag , three radio button ->change triggers the onChange of input
+// make questionwise data
+// make quiz responsive
+// edit quiz questions

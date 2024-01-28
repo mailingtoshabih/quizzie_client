@@ -18,6 +18,7 @@
 
 .title {
     color : #5076FF;
+    text-transform: capitalize;
 }
 
 .corner p{

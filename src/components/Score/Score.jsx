@@ -19,21 +19,12 @@ const calculateScore = (finalAnswers, questions) => {
 
 export const Score = ({ finalAnswers, questions }) => {
 
-    console.log({ finalAnswers, questions })
-
     const navigate = useNavigate();
-
     const handleClose = () => {
         navigate(-1);
     }
 
-    const getScore = async () => {
-        await axios.get("")
-            .then((res) => console.log(res.data))
-            .catch((e) => console.log(e.message))
-    }
-
-
+ 
     return (
         <div className={styles.parent}>
             <div className={styles.card}>
@@ -46,7 +37,7 @@ export const Score = ({ finalAnswers, questions }) => {
                 <p className={styles.p}>
                     Your Score is &nbsp;
                     <span style={{ color: "#60B84B" }}>
-                        0{finalAnswers && questions && calculateScore(finalAnswers, questions)}/0{questions.length}
+                        0{finalAnswers && questions && calculateScore(finalAnswers, questions)}/0{questions?.length}
                     </span>
                 </p>
             </div >

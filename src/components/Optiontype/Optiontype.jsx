@@ -4,10 +4,12 @@ import styles from "./optiontype.module.css"
 
 export const Optiontype = ({ active, setOptionType, handleInputChange }) => {
 
-    const [selectedOption, setSelectedOption] = useState(active);
+    const [selectedOption, setSelectedOption] = useState(active && active);
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
         setOptionType(event.target.value);
+
+        // handleInputChange(event);
     };
     // console.log(selectedOption)
 
@@ -15,15 +17,18 @@ export const Optiontype = ({ active, setOptionType, handleInputChange }) => {
         const event = {
             target: {
                 name: "optionType",
-                value: "text"
+                value: selectedOption,
             }
         }
         handleInputChange(event);
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         setSelectedOption(active);
-    },[active])
+    }, [active])
+
+    // if not working -> change handleOption change -> handleinputchange
+    //  then remove calling handleinput chng from handleoption chngn
 
 
     return (
@@ -42,7 +47,7 @@ export const Optiontype = ({ active, setOptionType, handleInputChange }) => {
                             name='optionType'
                             value="text"
                             checked={selectedOption === 'text'}
-                            onChange={handleInputChange}
+                            onChange={handleOptionChange}
                         />
                         Text
                     </label>
@@ -53,7 +58,7 @@ export const Optiontype = ({ active, setOptionType, handleInputChange }) => {
                             type="radio"
                             value="imgurl"
                             checked={selectedOption === 'imgurl'}
-                            onChange={handleInputChange}
+                            onChange={handleOptionChange}
                         />
                         Image URL
                     </label>
@@ -64,7 +69,7 @@ export const Optiontype = ({ active, setOptionType, handleInputChange }) => {
                             type="radio"
                             value="textimgurl"
                             checked={selectedOption === 'textimgurl'}
-                            onChange={handleInputChange}
+                            onChange={handleOptionChange}
                         />
                         Text & Image URL
                     </label>

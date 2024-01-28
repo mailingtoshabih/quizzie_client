@@ -26,14 +26,21 @@ export const Login = () => {
     if (!details.password || !details.email) return;
 
     await axios.post("http://localhost:3000/auth/login", details)
-      .then((res) => {
+      .then((response) => {
         // console.log(res.data);
-        if (res.data) navigate("/dashboard");
+        if (response.data.token) {
+          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          // navigate("/");
+          window.location.reload();
+
+        } else {
+          console.log(response.data.error || "Signup failed");
+        }
       })
       .catch((e) => console.log(e.message));
     // console.log(details);
   }
-
 
 
 

@@ -9,8 +9,10 @@ export const Createform = ({ setInitialform }) => {
 
     const handleClick = (e) => {
         e.preventDefault();
+        const user = localStorage.getItem('user');
+        const parsedUser = user ? JSON.parse(user) : null;
         if (!quizTitle) return;
-        setInitialform({ title: quizTitle, type: radio })
+        setInitialform({ title: quizTitle, type: radio, userId: parsedUser?._id })
     }
 
 

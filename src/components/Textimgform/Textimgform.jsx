@@ -3,12 +3,13 @@ import styles from "./textimgform.module.css"
 import { Svgon } from "../Svg/Svgon"
 import { Svgoff } from "../Svg/Svgoff"
 import { Optiontype } from '../Optiontype/Optiontype'
+import { Timer } from '../Timer/Timer'
 
 
 
 
 
-export const Textimgform = ({ page, getFormData, setOptionType }) => {
+export const Textimgform = ({ initialForm, page, getFormData, setOptionType }) => {
 
     const [option1Text, setOption1Text] = useState("");
     const [option2Text, setOption2Text] = useState("");
@@ -38,7 +39,7 @@ export const Textimgform = ({ page, getFormData, setOptionType }) => {
             ...prevData,
             [name]: value,
         }));
-        console.log(formData);
+        // console.log(formData);
     };
 
     useEffect(() => {
@@ -141,6 +142,10 @@ export const Textimgform = ({ page, getFormData, setOptionType }) => {
                 </div>
 
             </div>
+
+            {
+                initialForm?.type && <Timer handleInputChange={handleInputChange} />
+            }
 
 
         </div>

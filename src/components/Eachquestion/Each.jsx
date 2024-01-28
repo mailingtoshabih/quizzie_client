@@ -9,7 +9,7 @@ export const Each = ({ index, question, type }) => {
 
     return (
         <div>
-            <p>Q{index + 1} :&nbsp; {question?.question}</p>
+            <p>Q{index + 1} :&nbsp; {question?.question || "Question"}</p>
 
             {type === true ?             //true-qna  false-poll
                 <div className={styles.boxparent}>

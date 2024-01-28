@@ -1,18 +1,24 @@
 import React from 'react'
-import styles from './delete.module.css';
 import axios from "axios";
+import styles from './delete.module.css';
 
 
 export const Delete = ({ setDeleteModal, quiz }) => {
 
     const handleDelete = async (e) => {
         e.preventDefault();
-        await axios.delete(`http://localhost:3000/quiz/delete/${quiz?._id}`)
+        const token = localStorage.getItem('token');
+        if (!token) return;
+        await axios.delete(`http://localhost:3000/quiz/delete/${quiz?._id}`, {
+            headers: {
+                'Authorization': token,
+            }
+        })
             .then((res) => location.reload())
             .catch((e) => console.log(e.message));
     }
 
-    
+
     // write question wise
     // make dashboard
     // responsive quiz

@@ -8,8 +8,7 @@ import { Timer } from '../Timer/Timer';
 
 
 
-
-export const Textform = ({ page, getFormData, setOptionType }) => {
+export const Textform = ({ initialForm, page, getFormData, setOptionType }) => {
 
     const [selectedInput, setSelectedInput] = useState(1);
     const [formData, setFormData] = useState({
@@ -22,40 +21,43 @@ export const Textform = ({ page, getFormData, setOptionType }) => {
         timer: '',
         optionType: 'text',
     });
-    console.log(formData)
+    // console.log(formData)
 
-
+    //saving the current form input
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
+        // console.log(formData);
     };
 
+    // saving the entire quiz answers
     useEffect(() => {
         getFormData({ formData });
     }, [formData]);
+
+    
 
 
 
 
     return (
         <div>
-
-
-            <div onChange={() => console.log("gg")}>
+            <div>
                 <input type="text"
                     name='question'
                     placeholder='Poll Question'
                     onChange={handleInputChange}
                     className={styles.pollinput} />
 
-                <Optiontype active={formData?.optionType} handleInputChange={handleInputChange} setOptionType={setOptionType} />
+                <Optiontype active={'text'}
+                    handleInputChange={handleInputChange}
+                    setOptionType={setOptionType} />
 
 
                 <div className={styles.optionbar} >
-
                     <div className={styles.inputparent}>
                         <input
                             onClick={() => setSelectedInput(1)}
@@ -133,6 +135,9 @@ export const Textform = ({ page, getFormData, setOptionType }) => {
 
             </div>
 
+            {
+                initialForm?.type && <Timer handleInputChange={handleInputChange} />
+            }
 
         </div>
     )

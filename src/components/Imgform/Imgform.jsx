@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import styles from "./imgform.module.css"
 import { Svgon } from "../Svg/Svgon"
 import { Svgoff } from "../Svg/Svgoff"
-import { useSelector, useDispatch } from 'react-redux';
+import { Timer } from '../Timer/Timer';
+import styles from "./imgform.module.css"
+import React, { useState, useEffect } from 'react'
 import { Optiontype } from '../Optiontype/Optiontype'
+import { useSelector, useDispatch } from 'react-redux';
 
 
 
 
-export const Imgform = ({ page, getFormData, setOptionType }) => {
+export const Imgform = ({ initialForm, page, getFormData, setOptionType }) => {
 
     const [selectedInput, setSelectedInput] = useState(1);
     const [formData, setFormData] = useState({
@@ -28,6 +29,7 @@ export const Imgform = ({ page, getFormData, setOptionType }) => {
             ...prevData,
             [name]: value,
         }));
+        // console.log(formData);
     };
 
     useEffect(() => {
@@ -42,7 +44,9 @@ export const Imgform = ({ page, getFormData, setOptionType }) => {
                 onChange={handleInputChange}
                 className={styles.pollinput} />
 
-            <Optiontype active={formData?.optionType}  handleInputChange={handleInputChange}  setOptionType={setOptionType} />
+            <Optiontype active={'textimg'}
+                handleInputChange={handleInputChange}
+                setOptionType={setOptionType} />
 
             <div className={styles.optionbar} >
                 <div
@@ -71,7 +75,7 @@ export const Imgform = ({ page, getFormData, setOptionType }) => {
                         className={styles.radio}
                         type="radio"
                         name="answer"
-                        value="a"
+                        value="b"
                         onChange={handleInputChange}
                     />
 
@@ -90,7 +94,7 @@ export const Imgform = ({ page, getFormData, setOptionType }) => {
                         className={styles.radio}
                         type="radio"
                         name="answer"
-                        value="a"
+                        value="c"
                         onChange={handleInputChange}
                     />
 
@@ -108,7 +112,7 @@ export const Imgform = ({ page, getFormData, setOptionType }) => {
                         className={styles.radio}
                         type="radio"
                         name="answer"
-                        value="a"
+                        value="d"
                         onChange={handleInputChange}
                     />
 
@@ -122,7 +126,9 @@ export const Imgform = ({ page, getFormData, setOptionType }) => {
                 </div>
             </div>
 
-
+            {
+                initialForm?.type && <Timer handleInputChange={handleInputChange} />
+            }
         </div>
     )
 }
