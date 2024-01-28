@@ -1,6 +1,7 @@
 .parent {
     width: 100vw;
-    height: 100vh;
+    max-height: 100%;
+    min-height: 100vh;
     background-color: #041325;
     color: white;
     display: flex;
@@ -8,11 +9,12 @@
     align-items: center;
 }
 
+/* yhi par kuch khel hai */
 
-@media (max-width: 600px) {
+@media (max-width: 750px) {
     .parent {
-        height: max-content;
-       
+        height: 100%;
+        background-color: white;
         /* Set to a single column for mobile screens */
     }
 }

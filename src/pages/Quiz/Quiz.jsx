@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 import { Score } from '../../components/Score/Score';
 import { Quizcard } from '../../components/Quizcard/Quizcard';
+import { Quizpage } from '../../components/Quizpage/Quizpage';
 
 
 export const Quiz = () => {
@@ -42,7 +43,7 @@ export const Quiz = () => {
           ?
           <Score questions={quiz?.quiz} finalAnswers={answers} />
           :
-          <Quizcard
+          <Quizpage
             quiz={quiz}
             question={quiz && quiz.quiz[page]}
             setAnswers={setAnswers}
