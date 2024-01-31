@@ -19,6 +19,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 function App() {
 
   // const token = localStorage.getItem('token');
+  const backendUrl = import.meta.env.VITE_BACKEND;
   const [token, settoken] = useState(localStorage.getItem('token'));
 
   const verifyToken = async () => {
@@ -26,7 +27,7 @@ function App() {
       return false;
     }
     try {
-      const response = await axios.get("http://localhost:3000/auth/verify-token", {
+      const response = await axios.get(`${backendUrl}auth/verify-token`, {
         headers: { 'Authorization': token }
       });
       return true;
