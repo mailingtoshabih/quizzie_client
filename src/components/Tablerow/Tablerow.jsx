@@ -22,7 +22,6 @@ export const Tablerow = ({ index, quiz }) => {
 
     return (
         <div>
-
             <div
                 key={quiz._id}
                 className={`${styles.row} ${index % 2 == 0 ? styles.evenRow : styles.oddRow}`}
@@ -57,8 +56,6 @@ export const Tablerow = ({ index, quiz }) => {
                 promptModal &&
                 <Prompt message={"Link Copied in clipboard"}/>
             }
-
-
         </div>
     )
 }

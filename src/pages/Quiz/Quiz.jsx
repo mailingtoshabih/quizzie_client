@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 import { Score } from '../../components/Score/Score';
 import { Quizpage } from '../../components/Quizpage/Quizpage';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { setReduxAnswers } from '../../../app/quizSlice';
+
 
 export const Quiz = () => {
   const backendUrl = import.meta.env.VITE_BACKEND;
@@ -14,13 +14,10 @@ export const Quiz = () => {
   const params = useParams();
   const [quiz, setQuiz] = useState(false);
   const [page, setPage] = useState(0);
-  // quiz && console.log(quiz)
 
   const [answers, setAnswers] = useState({});
   const [finalAnswers, setFinalAnswers] = useState(null);
-
   const [questionDetails, setQuestionDetails] = useState();
-  // console.log("qd", questionDetails);
 
   const submitQuiz = () => {
     setFinalAnswers(answers);
@@ -30,8 +27,6 @@ export const Quiz = () => {
     dispatch(setReduxAnswers(answers))
   }, [answers]);
   const reduxAnswers = useSelector((state) => state?.finalanswer?.reduxAnswers);
-
-
 
 
   useEffect(() => {
@@ -48,7 +43,6 @@ export const Quiz = () => {
 
   return (
     <div className={styles.parent}>
-
       {
         finalAnswers
           ?

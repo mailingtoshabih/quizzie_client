@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import styles from "./congrats.module.css"
-import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import styles from "./congrats.module.css"
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 export const Congrats = () => {
 

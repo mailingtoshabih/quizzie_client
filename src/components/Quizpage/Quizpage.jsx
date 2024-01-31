@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import styles from "./quizpage.module.css"
-import { Timer } from '../Timer/Timer';
 import axios from "axios"
-import { useDispatch, useSelector } from 'react-redux';
-import { setReduxAnswers } from '../../../app/quizSlice';
+import { Timer } from '../Timer/Timer';
+import styles from "./quizpage.module.css"
+import React, { useState, useEffect } from 'react'
 
 
 
@@ -71,14 +69,6 @@ export const Quizpage = ({ setQuestionDetails, question, quiz, setPage, page, se
     }
 
 
-    // const showDesktop = styles.smalltext;
-    // const showMobile = styles.insideText;
-    // const hide = styles.hideText;
-
-
-
-
-
     return (
         <div className={styles.card}>
             <div className={styles.top}>
@@ -97,91 +87,6 @@ export const Quizpage = ({ setQuestionDetails, question, quiz, setPage, page, se
                     ||
                     "Your question text comes here, its a sample text."}
             </p>
-
-
-
-
-            {/* <div className={styles.optionsParent}>
-
-                <div  onClick={() => setSelection("a")} className={styles.optionboxparent}>
-                    {question?.option1text &&
-                        <p className={styles.smalltext}>{question?.option1text}</p>
-                    }
-
-                    <div
-                        className={selection === 'a' ? `${styles.selected}` : `${styles.optionbox}`}>
-                        {
-                            isURL(question?.option1) ?
-                                (<img className={styles.img} src={question?.option1} alt="" />)
-                                :
-                                <p className={styles.p}>{question?.option1}</p>
-                        }
-                    </div>
-                </div>
-
-
-                <div className={styles.optionboxparent}>
-                    {question?.option2text &&
-                        <p className={styles.smalltext}>{question?.option1text}</p>
-                    }
-                    <div onClick={() => setSelection("b")}
-                        className={selection === 'b' ? `${styles.selected}` : `${styles.optionbox}`}>
-                        {
-                            isURL(question?.option2) ?
-                                (
-                                    <img className={styles.img} src={question?.option2} alt="" />
-                                )
-                                :
-                                <p className={styles.p}>{question?.option2}</p>
-                        }
-                    </div>
-                </div>
-
-                <div className={styles.optionboxparent}>
-                    {question?.option3text &&
-                        <p className={styles.smalltext}>{question?.option1text}</p>
-                    }
-                    <div onClick={() => setSelection("c")}
-                        className={selection === 'c' ? `${styles.selected}` : `${styles.optionbox}`}>
-                        {
-                            isURL(question?.option3) ?
-                                (
-                                    <img className={styles.img} src={question?.option3} alt="" />
-                                )
-                                :
-                                <p className={styles.p}> {question?.option3}</p>
-                        }
-                    </div>
-                </div>
-
-
-                <div className={styles.optionboxparent}>
-                    {question?.option4text &&
-                        <p className={styles.smalltext}>{question?.option1text}</p>
-                    }
-                    <div onClick={() => setSelection("d")}
-                        className={selection === 'd' ? `${styles.selected}` : `${styles.optionbox}`}>
-                        {
-                            isURL(question?.option4) ?
-                                (
-                                    <img className={styles.img} src={question?.option4} alt="" />
-                                )
-                                :
-                                <p className={styles.p}>{question?.option4}</p>
-                        }
-                    </div>
-                </div>
-
-            </div> */}
-
-
-
-
-
-
-
-
-
 
             <div className={styles.optionsParent}>
                 {
@@ -339,29 +244,6 @@ export const Quizpage = ({ setQuestionDetails, question, quiz, setPage, page, se
             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             {
                 page + 1 < quiz?.quiz?.length ?
                     <button onClick={handleNext} className={styles.next}>
@@ -374,6 +256,5 @@ export const Quizpage = ({ setQuestionDetails, question, quiz, setPage, page, se
             }
 
         </div >
-
     )
 }

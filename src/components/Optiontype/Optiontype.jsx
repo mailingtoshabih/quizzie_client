@@ -8,10 +8,7 @@ export const Optiontype = ({ active, setOptionType, handleInputChange }) => {
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
         setOptionType(event.target.value);
-
-        // handleInputChange(event);
     };
-    // console.log(selectedOption)
 
     useEffect(() => {
         const event = {
@@ -27,10 +24,7 @@ export const Optiontype = ({ active, setOptionType, handleInputChange }) => {
         setSelectedOption(active);
     }, [active])
 
-    // if not working -> change handleOption change -> handleinputchange
-    //  then remove calling handleinput chng from handleoption chngn
-
-
+   
     return (
         <div>
 
@@ -74,11 +68,7 @@ export const Optiontype = ({ active, setOptionType, handleInputChange }) => {
                         Text & Image URL
                     </label>
                 </div>
-
             </div>
-
-
-
         </div>
     )
 }

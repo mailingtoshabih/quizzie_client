@@ -23,22 +23,13 @@ export const CreateQuiz = () => {
       <Sidebar />
 
       <div className={styles.formParent}>
-
-
-        {/* <Createform /> */}
-        {/* <Pollform/> */}
-        {/* {formPage[1]} */}
         {
           initialForm ?
             (formSubmitted ? formPage[3] : formPage[2])
             :
             formPage[1]
         }
-
-
-
       </div>
-
     </div>
   )
 }

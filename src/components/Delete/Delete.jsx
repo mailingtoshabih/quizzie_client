@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
 import axios from "axios";
+import React, { useState } from 'react'
 import styles from './delete.module.css';
 
 
@@ -28,17 +28,9 @@ export const Delete = ({ setDeleteModal, quiz }) => {
             });
     }
 
-
-    // write question wise
-    // make dashboard
-    // responsive quiz
-
-
     return (
         <div className={styles.parent}>
-
             <div className={styles.card}>
-
                 <div>
                     <p className={styles.congrats}>
                         Are you sure you want to delete ?
@@ -59,9 +51,7 @@ export const Delete = ({ setDeleteModal, quiz }) => {
                         <button className={styles.cancel} onClick={() => setDeleteModal(false)}>Cancel</button>
                     </div>
                 </div>
-
             </div>
-
         </div>
     )
 }

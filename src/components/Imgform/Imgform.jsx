@@ -1,11 +1,7 @@
-import { Svgon } from "../Svg/Svgon"
-import { Svgoff } from "../Svg/Svgoff"
 import { Timer } from '../Timer/Timer';
 import styles from "./imgform.module.css"
 import React, { useState, useEffect } from 'react'
 import { Optiontype } from '../Optiontype/Optiontype'
-import { useSelector, useDispatch } from 'react-redux';
-
 
 
 
@@ -29,7 +25,6 @@ export const Imgform = ({ initialForm, page, getFormData, setOptionType }) => {
             ...prevData,
             [name]: value,
         }));
-        // console.log(formData);
     };
 
     useEffect(() => {

@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import styles from "./textimgform.module.css"
-import { Svgon } from "../Svg/Svgon"
-import { Svgoff } from "../Svg/Svgoff"
-import { Optiontype } from '../Optiontype/Optiontype'
 import { Timer } from '../Timer/Timer'
+import styles from "./textimgform.module.css"
+import React, { useState, useEffect } from 'react'
+import { Optiontype } from '../Optiontype/Optiontype'
 
 
 
@@ -16,7 +14,6 @@ export const Textimgform = ({ initialForm, page, getFormData, setOptionType }) =
     const [option3Text, setOption3Text] = useState("");
     const [option4Text, setOption4Text] = useState("");
 
-    // const [optionType, setOptionType] = useState('text');
     const [selectedInput, setSelectedInput] = useState(1);
     const [formData, setFormData] = useState({
         question: '',

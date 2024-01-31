@@ -4,11 +4,6 @@ import React, { useEffect, useState } from 'react';
 export const Timer = ({handleInputChange}) => {
     const [timer, setTimer] = useState(false);
 
-    // const handleInputChange = (event) => {
-    //     const { value } = event.target;
-    //     setTimer(value);
-    // };
-
     const event = {
         target : {
             name : "timer",

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import styles from "./createform.module.css"
 import { useNavigate } from 'react-router-dom'
+
+
 export const Createform = ({ setInitialform }) => {
 
     const navigate = useNavigate();
@@ -19,30 +21,23 @@ export const Createform = ({ setInitialform }) => {
         setInitialform({ title: quizTitle, type: radio, userId: parsedUser?._id })
     }
 
-
     return (
         <div className={styles.card}>
-
             <div className={styles.container3}>
-
                 <input type="text" placeholder='Quiz Name'
                     onChange={(e) => setQuizTitle(e.target.value)}
                     className={styles.input} />
 
                 <div className={styles.radioParent}>
-
                     <p className={styles.quiztype}>
                         Quiz Type
                     </p>
-
                     <button onClick={() => setRadio(true)}
                         className={radio ? `${styles.radio} ${styles.radioActive}` : `${styles.radio}`}>
                         Q & A</button>
-
                     <button onClick={() => setRadio(false)}
                         className={!radio ? `${styles.radio} ${styles.radioActive}` : `${styles.radio}`}>
                         Poll</button>
-
                 </div>
 
                 {

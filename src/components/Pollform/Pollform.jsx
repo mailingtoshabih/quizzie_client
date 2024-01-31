@@ -11,8 +11,6 @@ export const Pollform = ({ initialForm, setFormSubmitted }) => {
     const [page, setPage] = useState(1);
     const [pageToRemove, setPageToRemove] = useState();
 
-
-
     const [renderedPages, setRenderedPages] = useState([
         <Pagenum page={1} initialForm={initialForm} setFormSubmitted={setFormSubmitted} />,
         <Pagenum page={2} initialForm={initialForm} setFormSubmitted={setFormSubmitted} />,
@@ -37,13 +35,10 @@ export const Pollform = ({ initialForm, setFormSubmitted }) => {
                             renderedPages?.length > 0 &&
                             renderedPages?.slice(0, page).map((page, index) => (
                                 <React.Fragment key={index}>
-                                    {/* <Pagenum page={index + 1} /> */}
                                     {page}
                                 </React.Fragment>
                             ))
                         }
-
-
 
                         {page < 5 &&
                             <div className={styles.add}
@@ -62,8 +57,6 @@ export const Pollform = ({ initialForm, setFormSubmitted }) => {
                         Max 5 Questions
                     </p>
                 </div>
-
-
             </div>
         </div >
     )

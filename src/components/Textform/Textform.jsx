@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import styles from "./textform.module.css"
-import { Svgon } from "../Svg/Svgon"
-import { Svgoff } from "../Svg/Svgoff"
-import { Optiontype } from '../Optiontype/Optiontype';
 import { Timer } from '../Timer/Timer';
-
-
+import styles from "./textform.module.css"
+import React, { useEffect, useState } from 'react'
+import { Optiontype } from '../Optiontype/Optiontype';
 
 
 export const Textform = ({ initialForm, page, getFormData, setOptionType }) => {
@@ -21,26 +17,18 @@ export const Textform = ({ initialForm, page, getFormData, setOptionType }) => {
         timer: '',
         optionType: 'text',
     });
-    // console.log(formData)
-
-    //saving the current form input
+    
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
-        // console.log(formData);
     };
 
-    // saving the entire quiz answers
     useEffect(() => {
         getFormData({ formData });
     }, [formData]);
-
-    
-
-
 
 
     return (

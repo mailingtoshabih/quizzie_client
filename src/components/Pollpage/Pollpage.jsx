@@ -24,7 +24,6 @@ export const Pollpage = ({ page, initialForm, setFormSubmitted }) => {
 
   const handleChange = (formdata) => {
     let data = formdata;
-    // data.formData.question = pollQuestion;
     setFormData(data.formData);
   }
 
@@ -64,11 +63,7 @@ export const Pollpage = ({ page, initialForm, setFormSubmitted }) => {
 
       <div className={styles.optionparent}>
         {optionType && optionPage[optionType]}
-
-        {/* timer */}
       </div>
-
-
 
       <div className={styles.buttonParent}>
         <button
@@ -81,7 +76,6 @@ export const Pollpage = ({ page, initialForm, setFormSubmitted }) => {
           Create Quiz
         </button>
       </div>
-
     </div>
   )
 }

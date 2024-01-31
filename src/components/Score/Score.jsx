@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import axios from 'axios'
 import styles from "./score.module.css"
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import award from "../../assets/image 2.png"
 import { useSelector } from 'react-redux'
-import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
 
 const calculateScore = (finalAnswers, questions) => {
     let correctCount = 0;
@@ -14,42 +14,19 @@ const calculateScore = (finalAnswers, questions) => {
             correctCount++;
         }
     });
-
     return correctCount;
 };
 
 
-
-
 export const Score = ({ savequestion, quizid, finalAnswers, questions, type }) => {
-console.log(savequestion)
+
     const navigate = useNavigate();
     const handleClose = () => {
         navigate(-1);
     }
 
     const reduxAnswers = useSelector((state) => state?.finalanswer?.reduxAnswers);
-    // console.log(reduxAnswers)
-
-    // useEffect(() => {
-    //     const saveAnswer = async () => {
-    //         await axios.post("http://localhost:3000/quiz/saveanswer", {
-    //             quizid: quizid && quizid,
-    //             question: savequestion && savequestion,
-    //             answers: reduxAnswers,
-    //         })
-    //             .then((res) => {
-    //                 console.log(" data : ", res.data);
-    //             })
-    //             .catch((e) => console.log(e));
-    //     }
-    //     saveAnswer();
-
-    // }, [reduxAnswers])
-
-
-
-
+ 
     return (
         <div className={styles.parent}>
             <div className={styles.card}>

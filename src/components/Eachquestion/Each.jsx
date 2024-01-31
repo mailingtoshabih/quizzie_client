@@ -24,15 +24,12 @@ export const Each = ({ index, question, type, quiz }) => {
     const matchPoll = (arr) => {
         const combinedString = arr.join('').toLowerCase(); // Convert to lowercase for case-insensitivity
 
-        // Count occurrences of each alphabet
         const counts = {
             a: (combinedString.match(/a/g) || []).length,
             b: (combinedString.match(/b/g) || []).length,
             c: (combinedString.match(/c/g) || []).length,
             d: (combinedString.match(/d/g) || []).length,
-            // Add more alphabets as needed
         };
-
         return counts;
     }
 
@@ -114,8 +111,6 @@ export const Each = ({ index, question, type, quiz }) => {
                     </div>
 
                 </div>
-
-
             }
         </div>
     )

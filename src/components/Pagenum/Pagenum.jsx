@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
 import React from 'react'
 import styles from "./pagenum.module.css"
+import { useEffect, useState } from "react"
 import { Pollpage } from "../Pollpage/Pollpage"
 import { useSelector, useDispatch } from 'react-redux';
 import { currentPage, setPage } from '../../../app/PageSlice';
@@ -47,9 +47,6 @@ export const Pagenum = React.memo(({ page, initialForm, setFormSubmitted }) => {
                             {page && page}
                         </div>
                 }
-
-               
-
             </div>
 
             <div className={styles.pageparent}>

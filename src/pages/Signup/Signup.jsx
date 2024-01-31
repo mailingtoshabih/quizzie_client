@@ -1,7 +1,7 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import styles from "./signup.module.css"
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios'
 
 export const Signup = () => {
 
@@ -40,7 +40,6 @@ export const Signup = () => {
 
     await axios.post(`${backendUrl}auth/signup`, details)
       .then((response) => {
-        // console.log(res.data);
         if (response.data.token) {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('user', JSON.stringify(response.data.user));
@@ -50,16 +49,11 @@ export const Signup = () => {
         }
       })
       .catch((e) => alert(e.message));
-    // console.log(details);
   }
-
-
-
 
 
   return (
     <div className={styles.parent}>
-
 
       <div className={styles.card}>
         <p className={styles.logo}>
@@ -112,14 +106,7 @@ export const Signup = () => {
             Signup
           </button>
         </div>
-
-
-
       </div>
     </div>
   )
 }
-
-
-
-// start from here, fix the labels

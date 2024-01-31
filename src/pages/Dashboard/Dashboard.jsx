@@ -99,7 +99,6 @@ export const Dashboard = () => {
             Trending Quizes
           </p>
           <div className={styles.trending}>
-            {/* all trending quizes mapping here*/}
             {
               trendingQuiz?.length > 0 ?
                 trendingQuiz?.map((quiz) => (
