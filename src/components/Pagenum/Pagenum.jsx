@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { currentPage, setPage } from '../../../app/PageSlice';
 
 
-export const Pagenum = ({ page, initialForm, setFormSubmitted }) => {
+export const Pagenum = React.memo(({ page, initialForm, setFormSubmitted }) => {
 
     const showPage = useSelector(currentPage);
     const dispatch = useDispatch();
@@ -47,6 +47,9 @@ export const Pagenum = ({ page, initialForm, setFormSubmitted }) => {
                             {page && page}
                         </div>
                 }
+
+               
+
             </div>
 
             <div className={styles.pageparent}>
@@ -59,3 +62,4 @@ export const Pagenum = ({ page, initialForm, setFormSubmitted }) => {
         </>
     )
 }
+);

@@ -6,7 +6,7 @@ import axios from 'axios';
 export const Congrats = () => {
 
     const navigate = useNavigate();
-
+    const backendUrl = import.meta.env.VITE_BACKEND;
     const handleClose = () => {
         navigate(-1);
     }
@@ -17,7 +17,7 @@ export const Congrats = () => {
         const token = localStorage.getItem('token');
         const getLink = async () => {
             if (!token) return;
-            await axios.get("http://localhost:3000/quiz/recentquiz", {
+            await axios.get(`${backendUrl}quiz/recentquiz`, {
                 headers: {
                     'Authorization': token,
                 }

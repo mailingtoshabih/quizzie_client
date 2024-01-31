@@ -56,8 +56,8 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     place-items: center;
-    gap: 20px;
     grid-auto-rows: minmax(100px, auto);
+    gap: 20px;
 }
 
 
@@ -153,7 +153,7 @@
 .optionboxqna {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content:space-around;
     background-color: #F0F0F0;
     max-width: 300px;
     width: 100%;

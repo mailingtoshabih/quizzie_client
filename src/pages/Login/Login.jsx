@@ -5,9 +5,11 @@ import axios from 'axios'
 
 
 export const Login = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND;
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
+  const [issue, setIssue] = useState(false);
 
   const [details, setDetails] = useState({
     email: "",
@@ -23,23 +25,24 @@ export const Login = () => {
   }
 
   const handleLogin = async () => {
-    if (!details.password || !details.email) return;
+    if (!details.password || !details.email) {
+      setIssue(true);
+      return;
+    };
 
-    await axios.post("http://localhost:3000/auth/login", details)
+    await axios.post(`${backendUrl}auth/login`, details)
       .then((response) => {
         // console.log(res.data);
         if (response.data.token) {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('user', JSON.stringify(response.data.user));
-          // navigate("/");
+          setIssue(false);
           window.location.reload();
-
         } else {
-          console.log(response.data.error || "Signup failed");
+          alert(response.data.error || "Login failed");
         }
       })
-      .catch((e) => console.log(e.message));
-    // console.log(details);
+      .catch((e) => alert(e.message));
   }
 
 
@@ -76,6 +79,13 @@ export const Login = () => {
               <input name="password" type="password" onChange={handleChange} className={styles.input} />
             </div>
           </form>
+
+          {
+            issue &&
+            <div style={{ fontSize: "12px", color: "red" }}>
+              All Fields Mandatory
+            </div>
+          }
 
           <button onClick={handleLogin} className={styles.loginbtn}>
             Log In

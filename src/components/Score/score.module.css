@@ -13,16 +13,43 @@
 }
 
 .card {
-    padding: 40px;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    height: 600px;
+    padding: 30px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    font-weight : 600;
+    font-weight: 600;
 }
 
-.p{
+.p {
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 40px;
+}
+
+.img {
+    margin: 30px;
+}
+
+@media (max-width: 750px) {
+    .parent{
+        box-shadow: none;
+        
+    }
+    .img {
+        width: 200px;
+        width: 200px;
+    }
+
+    .p {
+        font-size: 24px;
+    }
+    .p span {
+        font-size: 24px;
+    }
 }

@@ -34,6 +34,7 @@ function formatNumber(number) {
 
 export const Dashboard = () => {
 
+  const backendUrl = import.meta.env.VITE_BACKEND;
   const [allquiz, setAllQuiz] = useState([]);
   const [trendingQuiz, setTrendingQuiz] = useState([]);
   // console.log(allquiz)
@@ -45,7 +46,7 @@ export const Dashboard = () => {
 
     const getAllQuiz = async () => {
       if (!token) return;
-      await axios.get(`http://localhost:3000/quiz/getallquiz/${parsedUser?._id}`, {
+      await axios.get(`${backendUrl}quiz/getallquiz/${parsedUser?._id}`, {
         headers: {
           'Authorization': token,
         }
@@ -56,7 +57,7 @@ export const Dashboard = () => {
 
     const getTrendingQuiz = async () => {
       if (!token) return;
-      await axios.get(`http://localhost:3000/quiz/trending/${parsedUser?._id}`, {
+      await axios.get(`${backendUrl}quiz/trending/${parsedUser?._id}`, {
         headers: {
           'Authorization': token,
         }

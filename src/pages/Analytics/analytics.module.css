@@ -11,6 +11,7 @@
   padding: 20px;
   align-items: center;
   justify-content: center;
+  overflow-y: auto;
 }
 
 .dashboardParent h1 {
@@ -66,4 +67,23 @@
   background-color: #b3c4ff;
 }
 
-.oddRow {}
+.loaderp {
+  text-align: center;
+  padding: 40px;
+}
+
+.loader {
+  width: 30px;
+  height: 30px;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

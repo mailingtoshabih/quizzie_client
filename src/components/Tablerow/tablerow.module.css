@@ -26,6 +26,6 @@
     text-transform: capitalize;
 }
 
-.oddRow {
-
+.svg {
+    cursor: pointer;
 }

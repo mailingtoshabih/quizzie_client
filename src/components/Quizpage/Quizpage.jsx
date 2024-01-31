@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import styles from "./quizpage.module.css"
 import { Timer } from '../Timer/Timer';
-
-const isURL = (str) => {
-    // Regular expression to match a simple URL pattern
-    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/;
-    return urlRegex.test(str);
-};
+import axios from "axios"
+import { useDispatch, useSelector } from 'react-redux';
+import { setReduxAnswers } from '../../../app/quizSlice';
 
 
 
-export const Quizpage = ({ question, quiz, setPage, page, setAnswers, submitQuiz }) => {
-
+export const Quizpage = ({ setQuestionDetails, question, quiz, setPage, page, setAnswers, answers, submitQuiz }) => {
+  
     const [selection, setSelection] = useState(10);
     const [seconds, setSeconds] = useState();
+    const backendUrl = import.meta.env.VITE_BACKEND;
 
+    const handleNext = async () => {
+        if (!quiz || !question || !answers) return;
+        await axios.post(`${backendUrl}quiz/saveanswer`, {
+            quizid: quiz?._id,
+            question: question?.question,
+            answers: selection,
+        })
+        .then((res) => {
+            console.log(" data : ", res.data);
+        })
+        .catch((e) => console.log(e));
 
-
-    const handleNext = () => {
         setPage(page + 1);
         const userAnswer = selection;
         setAnswers(
@@ -51,7 +58,14 @@ export const Quizpage = ({ question, quiz, setPage, page, setAnswers, submitQuiz
     }, [seconds, question]);
 
 
-    const handleSubmit = () => {
+
+    useEffect(() => {
+        setQuestionDetails({ question: question?.question, quizid: quiz?._id })
+        // dispatch(setReduxAnswers(answers))
+    }, [question, quiz]);
+
+
+    const handleSubmit = async () => {
         handleNext();
         submitQuiz();
     }
@@ -240,39 +254,39 @@ export const Quizpage = ({ question, quiz, setPage, page, setAnswers, submitQuiz
                             question?.option1 &&
                             <div onClick={() => setSelection("a")} className={selection === 'a' ? `${styles.selected}` : `${styles.optionbox}`}>
                                 <div className={styles.textimgurl}>
-                                    <p className={styles.smallText}>{"Sample Text"}</p>
+                                    <p className={styles.smallText}>{question?.option1text}</p>
                                     <img className={styles.imgsmall} src={question?.option1} alt="" />
-                                    <p className={styles.insidetext}>{"Extra Texjt"}</p>
+                                    <p className={styles.insidetext}>{question?.option1text}</p>
                                 </div>
                             </div>
                         }
                         {
-                            question?.option1 &&
+                            question?.option2 &&
                             <div onClick={() => setSelection("b")} className={selection === 'b' ? `${styles.selected}` : `${styles.optionbox}`}>
                                 <div className={styles.textimgurl}>
-                                    <p className={styles.smallText}>{"Sample Text"}</p>
-                                    <img className={styles.imgsmall} src={question?.option1} alt="" />
-                                    <p className={styles.insidetext}>{"Extra Text"}</p>
+                                    <p className={styles.smallText}>{question?.option2text}</p>
+                                    <img className={styles.imgsmall} src={question?.option2} alt="" />
+                                    <p className={styles.insidetext}>{question?.option2text}</p>
                                 </div>
                             </div>
                         }
                         {
-                            question?.option1 &&
+                            question?.option3 &&
                             <div onClick={() => setSelection("c")} className={selection === 'c' ? `${styles.selected}` : `${styles.optionbox}`}>
                                 <div className={styles.textimgurl}>
-                                    <p className={styles.smallText}>{"Sample Text"}</p>
-                                    <img className={styles.imgsmall} src={question?.option1} alt="" />
-                                    <p className={styles.insidetext}>{"Extra Text"}</p>
+                                    <p className={styles.smallText}>{question?.option3text}</p>
+                                    <img className={styles.imgsmall} src={question?.option3} alt="" />
+                                    <p className={styles.insidetext}>{question?.option3text}</p>
                                 </div>
                             </div>
                         }
                         {
-                            question?.option1 &&
+                            question?.option4 &&
                             <div onClick={() => setSelection("d")} className={selection === 'd' ? `${styles.selected}` : `${styles.optionbox}`}>
                                 <div className={styles.textimgurl}>
-                                    <p className={styles.smallText}>{"Sample Text"}</p>
-                                    <img className={styles.imgsmall} src={question?.option1} alt="" />
-                                    <p className={styles.insidetext}>{"Extra Text"}</p>
+                                    <p className={styles.smallText}>{question?.option4text}</p>
+                                    <img className={styles.imgsmall} src={question?.option4} alt="" />
+                                    <p className={styles.insidetext}>{question?.option4text}</p>
                                 </div>
                             </div>
                         }
@@ -288,7 +302,7 @@ export const Quizpage = ({ question, quiz, setPage, page, setAnswers, submitQuiz
                             question?.option1 &&
                             <div onClick={() => setSelection("a")} className={selection === 'a' ? `${styles.selectedqna}` : `${styles.optionboxqna}`}>
                                 <div className={styles.textimgurl}>
-                                    <p className={styles.smalltextqna}>{"Sample Text"}</p>
+                                    <p className={styles.smalltextqna}>{question?.option1text}</p>
                                     <img className={styles.imgsmallqna} src={question?.option1} alt="" />
                                 </div>
                             </div>
@@ -297,8 +311,8 @@ export const Quizpage = ({ question, quiz, setPage, page, setAnswers, submitQuiz
                             question?.option1 &&
                             <div onClick={() => setSelection("b")} className={selection === 'b' ? `${styles.selectedqna}` : `${styles.optionboxqna}`}>
                                 <div className={styles.textimgurl}>
-                                    <p className={styles.smalltextqna}>{"Sample Text"}</p>
-                                    <img className={styles.imgsmallqna} src={question?.option1} alt="" />
+                                    <p className={styles.smalltextqna}>{question?.option2text}</p>
+                                    <img className={styles.imgsmallqna} src={question?.option2} alt="" />
                                 </div>
                             </div>
                         }
@@ -306,8 +320,8 @@ export const Quizpage = ({ question, quiz, setPage, page, setAnswers, submitQuiz
                             question?.option1 &&
                             <div onClick={() => setSelection("c")} className={selection === 'c' ? `${styles.selectedqna}` : `${styles.optionboxqna}`}>
                                 <div className={styles.textimgurl}>
-                                    <p className={styles.smalltextqna}>{"Sample Text"}</p>
-                                    <img className={styles.imgsmallqna} src={question?.option1} alt="" />
+                                    <p className={styles.smalltextqna}>{question?.option3text}</p>
+                                    <img className={styles.imgsmallqna} src={question?.option3} alt="" />
                                 </div>
                             </div>
                         }
@@ -315,8 +329,8 @@ export const Quizpage = ({ question, quiz, setPage, page, setAnswers, submitQuiz
                             question?.option1 &&
                             <div onClick={() => setSelection("d")} className={selection === 'd' ? `${styles.selectedqna}` : `${styles.optionboxqna}`}>
                                 <div className={styles.textimgurl}>
-                                    <p className={styles.smalltextqna}>{"Sample Text"}</p>
-                                    <img className={styles.imgsmallqna} src={question?.option1} alt="" />
+                                    <p className={styles.smalltextqna}>{question?.option4text}</p>
+                                    <img className={styles.imgsmallqna} src={question?.option4} alt="" />
                                 </div>
                             </div>
                         }

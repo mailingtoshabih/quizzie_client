@@ -8,6 +8,7 @@ import { Sidebar } from '../../components/Sidebar/Sidebar';
 
 
 export const Question = () => {
+    const backendUrl = import.meta.env.VITE_BACKEND;
     const params = useParams();
     const [quiz, setQuiz] = useState([]);
 
@@ -15,7 +16,7 @@ export const Question = () => {
         const token = localStorage.getItem('token');
         const findQuiz = async () => {
             if (!token) return;
-            await axios.get(`http://localhost:3000/quiz/getquiz/${params.id}`, {
+            await axios.get(`${backendUrl}quiz/getquiz/${params.id}`, {
                 headers: {
                     'Authorization': token,
                 }
@@ -30,8 +31,7 @@ export const Question = () => {
 
 
 
-
-    return (
+   return (
         <div className={styles.parent}>
 
             <Sidebar />
@@ -39,7 +39,7 @@ export const Question = () => {
             <div className={styles.dashboardParent}>
 
                 <div className={styles.top}>
-                    <p className={styles.title} >{quiz?.title}</p>
+                    <p className={styles.title} >{quiz?.title} Question Analysis</p>
                     <div className={styles.corner}>
                         <p>Created At : {quiz?.createdAt}</p>
                         <p>Impressions : {quiz?.impression}</p>
@@ -50,22 +50,11 @@ export const Question = () => {
                     {
                         quiz &&
                         quiz?.quiz?.map((question, index) => (
-                            <Each type={quiz.type} key={index} index={index} question={question} />
+                            <Each type={quiz.type} key={index} index={index} quiz={quiz} question={question} />
                         ))
                     }
-
-
                 </div>
-
-
-
-
-
-
-
             </div>
-
-
         </div>
     )
 }

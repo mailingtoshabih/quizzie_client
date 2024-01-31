@@ -13,14 +13,14 @@ import { setInputValue, selectInputValue } from "../../../app/formSlice"
 
 
 export const Pollpage = ({ page, initialForm, setFormSubmitted }) => {
-  
+
+  const backendUrl = import.meta.env.VITE_BACKEND;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const stateValue = useSelector((state) => state.form.value);
 
   const [optionType, setOptionType] = useState('text');
   const [formData, setFormData] = useState({});
-  console.log(formData)
 
   const handleChange = (formdata) => {
     let data = formdata;
@@ -44,7 +44,7 @@ export const Pollpage = ({ page, initialForm, setFormSubmitted }) => {
     const token = localStorage.getItem('token');
     if (!token) return;
     try {
-      await axios.post("http://localhost:3000/quiz/publishquiz",
+      await axios.post(`${backendUrl}quiz/publishquiz`,
         { stateValue, initialForm }, {
         headers: {
           'Authorization': token,
@@ -82,16 +82,6 @@ export const Pollpage = ({ page, initialForm, setFormSubmitted }) => {
         </button>
       </div>
 
-      {/* {
-        initialForm?.type && <Timer />
-      } */}
-
     </div>
   )
 }
-
-
-// first fix the forms ->use one input tag , three radio button ->change triggers the onChange of input
-// make questionwise data
-// make quiz responsive
-// edit quiz questions

@@ -5,21 +5,22 @@ import { Pagenum } from '../Pagenum/Pagenum';
 import { useSelector } from 'react-redux';
 
 
-export const Pollform = ({initialForm, setFormSubmitted}) => {
+export const Pollform = ({ initialForm, setFormSubmitted }) => {
 
     const [activePage, setActivePage] = useState(1);
     const [page, setPage] = useState(1);
+    const [pageToRemove, setPageToRemove] = useState();
 
- 
 
 
-    const renderedPages = [
-        <Pagenum page={1} initialForm={initialForm} setFormSubmitted={setFormSubmitted}/>,
-        <Pagenum page={2} initialForm={initialForm} setFormSubmitted={setFormSubmitted}/>,
-        <Pagenum page={3} initialForm={initialForm} setFormSubmitted={setFormSubmitted}/>,
-        <Pagenum page={4} initialForm={initialForm} setFormSubmitted={setFormSubmitted}/>,
-        <Pagenum page={5} initialForm={initialForm} setFormSubmitted={setFormSubmitted}/>,
-    ]
+    const [renderedPages, setRenderedPages] = useState([
+        <Pagenum page={1} initialForm={initialForm} setFormSubmitted={setFormSubmitted} />,
+        <Pagenum page={2} initialForm={initialForm} setFormSubmitted={setFormSubmitted} />,
+        <Pagenum page={3} initialForm={initialForm} setFormSubmitted={setFormSubmitted} />,
+        <Pagenum page={4} initialForm={initialForm} setFormSubmitted={setFormSubmitted} />,
+        <Pagenum page={5} initialForm={initialForm} setFormSubmitted={setFormSubmitted} />,
+    ]);
+
 
     const handleAdd = (e) => {
         e.preventDefault();
@@ -35,14 +36,14 @@ export const Pollform = ({initialForm, setFormSubmitted}) => {
                         {
                             renderedPages?.length > 0 &&
                             renderedPages?.slice(0, page).map((page, index) => (
-                                <>
+                                <React.Fragment key={index}>
                                     {/* <Pagenum page={index + 1} /> */}
                                     {page}
-                                </>
+                                </React.Fragment>
                             ))
                         }
 
-    
+
 
                         {page < 5 &&
                             <div className={styles.add}

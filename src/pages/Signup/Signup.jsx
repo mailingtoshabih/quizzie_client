@@ -5,9 +5,11 @@ import axios from 'axios'
 
 export const Signup = () => {
 
+  const backendUrl = import.meta.env.VITE_BACKEND;
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
+  const [issue, setIssue] = useState(false);
 
   const [details, setDetails] = useState({
     username: "",
@@ -31,9 +33,12 @@ export const Signup = () => {
       !details.confirmpassword ||
       !details.email ||
       details.password !== details.confirmpassword
-    ) return;
+    ) {
+      setIssue(true);
+      return;
+    };
 
-    await axios.post("http://localhost:3000/auth/signup", details)
+    await axios.post(`${backendUrl}auth/signup`, details)
       .then((response) => {
         // console.log(res.data);
         if (response.data.token) {
@@ -41,10 +46,10 @@ export const Signup = () => {
           localStorage.setItem('user', JSON.stringify(response.data.user));
           navigate("/login");
         } else {
-          console.log(response.data.error || "Signup failed");
+          alert(response.data.error || "Signup failed");
         }
       })
-      .catch((e) => console.log(e.message));
+      .catch((e) => alert(e.message));
     // console.log(details);
   }
 
@@ -96,6 +101,13 @@ export const Signup = () => {
             </div>
           </form>
 
+          {
+            issue &&
+            <div style={{ fontSize: "12px", color: "red" }}>
+              All Fields Mandatory
+            </div>
+          }
+
           <button className={styles.loginbtn} onClick={handleSignup}>
             Signup
           </button>
@@ -107,3 +119,7 @@ export const Signup = () => {
     </div>
   )
 }
+
+
+
+// start from here, fix the labels

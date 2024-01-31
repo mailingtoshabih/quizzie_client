@@ -6,12 +6,16 @@ export const Createform = ({ setInitialform }) => {
     const navigate = useNavigate();
     const [quizTitle, setQuizTitle] = useState("");
     const [radio, setRadio] = useState(false);  //true-qna, false-poll
+    const [issue, setIssue] = useState(false);
 
     const handleClick = (e) => {
         e.preventDefault();
+        if (!quizTitle) {
+            setIssue(true);
+            return;
+        };
         const user = localStorage.getItem('user');
         const parsedUser = user ? JSON.parse(user) : null;
-        if (!quizTitle) return;
         setInitialform({ title: quizTitle, type: radio, userId: parsedUser?._id })
     }
 
@@ -40,6 +44,13 @@ export const Createform = ({ setInitialform }) => {
                         Poll</button>
 
                 </div>
+
+                {
+                    issue &&
+                    <div style={{ fontSize: "12px", color: "red" }}>
+                        Quiz Name is mandatory
+                    </div>
+                }
 
                 <div className={styles.buttonParent}>
                     <button onClick={(() => navigate(-1))} className={`${styles.button}`}>
